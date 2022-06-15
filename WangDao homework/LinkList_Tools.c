@@ -151,3 +151,74 @@ int Search2_val(LinkList* list, int val) {
 	if (p == NULL) return -1;
 	else return index;
 }
+
+
+
+//==========================================================
+//链表简单算法
+
+typedef struct node_s {
+    int val;
+    struct node_s* next;
+} Node;
+
+//用快慢指针查找链表中点
+int middleElement(Node* list) {
+	int index = 0;
+	Node* fast = list;
+	Node* slow = list;
+	while (fast != NULL && fast->next != NULL) {
+		fast = fast->next->next;
+		slow = slow->next;
+		index++;
+	}
+	return index;
+}
+
+//用快慢指针查找是否有环
+bool isRing_pointer(Node* list) {
+	Node* fast = list;
+	Node* slow = list;
+	while (fast != NULL && fast->next != NULL) {
+		if (fast == slow) {
+			return true;
+		}
+		fast = fast->next->next;
+		slow = slow->next;
+	}
+	return false;
+}
+
+//用迷雾森林法查找是否有环
+#define Maxsize 250
+
+bool isRing_forest(Node* list) {
+	Node* isVisited[Maxsize] = { NULL };
+	int i = 0;
+	Node* p = list;
+	while (p) {
+		for (int j = 0; j < i; j++) {
+			if (isVisited[j] == p) {
+				return true;
+			}
+		}
+		isVisited[i++] = p;
+		p = p->next;
+	}
+	return false;
+}
+
+//反转链表
+Node* reverse(Node* list) {
+	if (list == NULL || list->next == NULL) return list;
+	Node* cur = list->next;
+	Node* pre = list;
+	pre->next = NULL;
+	while (cur) {
+		Node* temp = cur->next;
+		cur->next = pre;
+		pre = cur;
+		cur = temp;
+	}
+	return pre;
+}
