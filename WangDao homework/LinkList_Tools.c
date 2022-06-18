@@ -222,3 +222,30 @@ Node* reverse(Node* list) {
 	}
 	return pre;
 }
+
+//合并两个有序单链表
+Node* mergeTwoLists(Node* list1, Node* list2) {
+	Node head;
+	Node* p = &head;
+	Node* p1 = list1;
+	Node* p2 = list2;
+	while (p1 != NULL && p2 != NULL) {
+		if (p1->val < p2->val) {
+			p->next = p1;
+			p = p->next;
+			p1 = p1->next;
+		}
+		else {
+			p->next = p2;
+			p = p->next;
+			p2 = p2->next;
+		}
+	}
+	if (p1 != NULL) {
+		p->next = p1;
+	}
+	else{
+		p->next = p2;
+	}
+	return head.next;
+}
