@@ -244,7 +244,7 @@ Node* mergeTwoLists(Node* list1, Node* list2) {
 	if (p1 != NULL) {
 		p->next = p1;
 	}
-	else{
+	if (p2 != NULL) {
 		p->next = p2;
 	}
 	return head.next;
