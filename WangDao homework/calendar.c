@@ -46,14 +46,13 @@ Please input the year whose calendear you want to know?
 |==================================================================|
 */
 
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdbool.h>
 
 bool isLeapYear(int i);
 void print(int day);
 int Count_Day(int day[]);
-int isWeek(int day[]);
+int isWeek(int day);
 int Print_Calendar(int year);
 
 //标记月份数组，作为全局变量
@@ -137,7 +136,7 @@ int Print_Calendar(int year) {
 					flag[stringStation] = lineEnd_r++;
 					if (lineEnd_r > month_day[block + 7]) {
 						break;
-					}a
+					}
 				}
 			}
 
